@@ -27,7 +27,7 @@ export default function Home() {
 
         {/* title */}
         <Heading
-          maxWidth="90vw"
+          maxWidth="80vw"
           size="3xl"
           my="5"
           textAlign="center"
@@ -63,13 +63,13 @@ export default function Home() {
               <ListIcon as={CheckIcon} color="teal.500" />
               アプリを実践的なものにするために{" "}
               <Link href="https://chakra-ui.com/" color="teal.500" isExternal>
-                chakra
+                chakra UI
               </Link>
-              {" と "}
+              {" / "}
               <Link href="https://jestjs.io/ja/" color="teal.500" isExternal>
                 Jest
               </Link>{" "}
-              を利用しています。
+              などを利用しています。
             </ListItem>
             <ListItem>
               <ListIcon as={CheckIcon} color="teal.500" />
