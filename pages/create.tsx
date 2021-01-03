@@ -1,17 +1,8 @@
-import { AddIcon } from "@chakra-ui/icons";
-import { Box, Heading, Image, Stack, useToast } from "@chakra-ui/react";
-import { Form, Formik } from "formik";
-import {
-  InputControl,
-  NumberInputControl,
-  SubmitButton,
-  SwitchControl,
-  TextareaControl,
-} from "formik-chakra-ui";
+import { Box, Heading, Image, useToast } from "@chakra-ui/react";
 import Router from "next/router";
 import React from "react";
-import * as Yup from "yup";
 import BackToHome from "../components/BackToHome";
+import BeverageForm from "../components/BeverageForm";
 import styles from "../styles/Home.module.css";
 import axios from "./../components/util/customAxios";
 
@@ -28,14 +19,6 @@ export default function Create() {
     };
   };
   const initialValues = createValues();
-
-  // validations
-  const validationSchema = Yup.object({
-    name: Yup.string().required(),
-    description: Yup.string(),
-    price: Yup.number().min(0).max(3000),
-    isRecomment: Yup.boolean(),
-  });
 
   // events
   const createBeverage = async (values, actions) => {
@@ -98,32 +81,11 @@ export default function Create() {
 
         {/* Form */}
         <Box width="30rem">
-          <Formik
+          <BeverageForm
             initialValues={initialValues}
             onSubmit={createBeverage}
-            validationSchema={validationSchema}
-          >
-            {(props) => (
-              <Form>
-                {/* name */}
-                <InputControl name="name" label="Beverage Name" isRequired />
-
-                {/* description */}
-                <TextareaControl name="description" label="Description" />
-
-                {/* price */}
-                <NumberInputControl name="price" label="Price" />
-
-                {/* isRecommend */}
-                <SwitchControl name="isRecommend" label="Recommend" />
-
-                {/* create new beverage button. */}
-                <Stack>
-                  <SubmitButton leftIcon={<AddIcon />}>登録する</SubmitButton>
-                </Stack>
-              </Form>
-            )}
-          </Formik>
+            type="create"
+          ></BeverageForm>
         </Box>
       </main>
     </div>

@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { isNameDuplicate } from "../../../components/util/beverageService";
 const prisma = new PrismaClient();
 
 export default async (req, res) => {
@@ -23,6 +24,13 @@ const handleUpdate = async (req, res) => {
   const url = req.url;
   const updateID = Number(url.split(/\//).pop());
   const { name, description, price, isRecommend } = req.body;
+
+  // `name` duplicate check
+  const isDup = await isNameDuplicate(name);
+  if (isDup) {
+    res.status(400).end("typed name `" + name + "` is duplicated.");
+    return;
+  }
 
   // prisma - UPDATE
   const beverage = await prisma.beverage.update({
