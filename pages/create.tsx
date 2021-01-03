@@ -38,14 +38,14 @@ export default function Create() {
   const toast = useToast();
 
   // events
-  const createDrink = async (values, actions) => {
+  const createBeverage = async (values, actions) => {
     const body = {
       name: values.name,
       description: values.description,
       price: Number(values.price),
       isRecommend: values.isRecommend,
     };
-    await axios.post("/api/drink", body);
+    await axios.post("/api/beverage", body);
 
     // form reset
     Object.assign(values, createValues());
@@ -61,7 +61,7 @@ export default function Create() {
     // success toast
     toast({
       title: "Create Successed !",
-      description: "We've created new drink you entered.",
+      description: "We've created new beverage you entered.",
       status: "success",
       duration: 3000,
       isClosable: true,
@@ -93,20 +93,20 @@ export default function Create() {
           textAlign="center"
           color="gray.600"
         >
-          Create New Customize Drink !
+          Create New Customize Beverage !
         </Heading>
 
         {/* Form */}
         <Box width="30rem">
           <Formik
             initialValues={initialValues}
-            onSubmit={createDrink}
+            onSubmit={createBeverage}
             validationSchema={validationSchema}
           >
             {(props) => (
               <Form>
                 {/* name */}
-                <InputControl name="name" label="Drink Name" isRequired />
+                <InputControl name="name" label="Beverage Name" isRequired />
 
                 {/* description */}
                 <TextareaControl name="description" label="Description" />
@@ -117,10 +117,10 @@ export default function Create() {
                 {/* isRecommend */}
                 <SwitchControl name="isRecommend" label="Recommend" />
 
-                {/* create new drink button. */}
+                {/* create new beverage button. */}
                 <Stack>
                   <SubmitButton leftIcon={<AddIcon />}>
-                    Create New Drink
+                    Create New Beverage
                   </SubmitButton>
                 </Stack>
               </Form>

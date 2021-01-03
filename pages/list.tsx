@@ -25,7 +25,7 @@ export default function List() {
 
   // fetch table data at componentDidMount
   useEffect(() => {
-    axios.get("/api/drink").then((res) => {
+    axios.get("/api/beverage").then((res) => {
       setTableData(res.data);
     });
   }, []);
@@ -79,7 +79,9 @@ export default function List() {
         {/* data table */}
         <Box width="60vw" my="5">
           <Table variant="striped">
-            <TableCaption>みんなのカスタマイズ一覧</TableCaption>
+            <TableCaption placement="top">
+              みんなのカスタマイズ一覧
+            </TableCaption>
             <Thead>
               <Tr>
                 <Th>NAME</Th>

@@ -85,12 +85,12 @@ export default function Home() {
         <Box my="3">
           {/* Create */}
           <Box my="6">
-            <LinkButton href="/create">Create New Drink</LinkButton>
+            <LinkButton href="/create">Create New Beverage</LinkButton>
           </Box>
 
           {/* Link */}
           <Box my="6">
-            <LinkButton href="/list">Go To Drink List</LinkButton>
+            <LinkButton href="/list">Go To Beverage List</LinkButton>
           </Box>
         </Box>
       </main>

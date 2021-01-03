@@ -20,7 +20,7 @@ export default function DeleteDialog(props) {
       <AlertDialogOverlay>
         <AlertDialogContent>
           <AlertDialogHeader fontSize="lg" fontWeight="bold">
-            Delete Drink
+            Delete Beverage
           </AlertDialogHeader>
 
           <AlertDialogBody>Are you sure ?</AlertDialogBody>

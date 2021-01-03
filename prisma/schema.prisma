@@ -10,7 +10,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Drink {
+model Beverage {
   id          Int      @id @default(autoincrement())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now())

@@ -2,12 +2,15 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async (req, res) => {
+  // call functions by method
   const funcMap = {
     GET: handleRead,
     POST: handleCreate,
   };
+
   const func = funcMap[req.method];
   if (!func) res.status(500).json();
+
   func(req, res);
 };
 
@@ -17,15 +20,15 @@ const handleCreate = async (req, res) => {
   // TODO: `name`の重複チェック
 
   // prisma - CREATE
-  const drink = await prisma.drink.create({
+  const beverage = await prisma.beverage.create({
     data: { name, description, price, isRecommend },
   });
-  res.json(drink);
+  res.json(beverage);
 };
 
 const handleRead = async (req, res) => {
   // prisma - READ
   // 条件は絞らずに全件を取得
-  const drink = await prisma.drink.findMany();
-  res.json(drink);
+  const beverage = await prisma.beverage.findMany();
+  res.json(beverage);
 };
