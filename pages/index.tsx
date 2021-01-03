@@ -33,15 +33,14 @@ export default function Home() {
           textAlign="center"
           color="gray.700"
         >
-          Welcome to{" "}
+          Welcome to CRUD Sample App Using{" "}
           <Link href="https://nextjs.org/" color="blue.500" isExternal>
             Next.js
           </Link>
           {" & "}
           <Link href="https://www.prisma.io/" color="blue.500" isExternal>
             Prisma
-          </Link>{" "}
-          CRUD Sample App !
+          </Link>
         </Heading>
 
         {/* description */}

@@ -1,5 +1,5 @@
 import { AddIcon } from "@chakra-ui/icons";
-import { Box, Heading, Stack } from "@chakra-ui/react";
+import { Box, Heading, Image, Stack, useToast } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import {
   InputControl,
@@ -12,14 +12,19 @@ import React from "react";
 import * as Yup from "yup";
 import BackToHome from "../components/BackToHome";
 import styles from "../styles/Home.module.css";
+import axios from "./../components/util/customAxios";
 
 export default function Create() {
-  // values for Fromik.
-  const initialValues = {
-    name: "",
-    price: "",
-    isRecommend: false,
+  // values for Formik.
+  const createValues = () => {
+    return {
+      name: "",
+      description: "",
+      price: "",
+      isRecommend: false,
+    };
   };
+  const initialValues = createValues();
 
   // validations
   const validationSchema = Yup.object({
@@ -29,12 +34,33 @@ export default function Create() {
     isRecomment: Yup.boolean(),
   });
 
+  const toast = useToast();
+
   // events
-  const createDrink = (values, actions) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      actions.setSubmitting(false);
-    }, 1000);
+  const createDrink = async (values, actions) => {
+    const body = {
+      name: values.name,
+      description: values.description,
+      price: Number(values.price),
+      isRecommend: values.isRecommend,
+    };
+    const res = await axios.post("/api/drink/create", body);
+
+    // success toast
+    toast({
+      title: "Create Successed !",
+      description: "We've created new drink you entered.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      position: "top",
+    });
+
+    // form reset
+    Object.assign(values, createValues());
+
+    console.log(res);
+    actions.setSubmitting(false);
   };
 
   return (
@@ -42,6 +68,16 @@ export default function Create() {
       <main className={styles.main}>
         {/* link to home. */}
         <BackToHome></BackToHome>
+
+        {/* Starbucks logo */}
+        <Box mt="5" mb="2">
+          <Image
+            borderRadius="full"
+            boxSize="150px"
+            src="/starbucks-logo.png"
+            alt="StarBucks logo"
+          />
+        </Box>
 
         {/* title */}
         <Heading
@@ -51,7 +87,7 @@ export default function Create() {
           textAlign="center"
           color="gray.600"
         >
-          Create New Customized Drink !
+          Create New Customize Drink !
         </Heading>
 
         {/* Form */}
