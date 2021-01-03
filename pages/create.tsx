@@ -8,6 +8,7 @@ import {
   SwitchControl,
   TextareaControl,
 } from "formik-chakra-ui";
+import Router from "next/router";
 import React from "react";
 import * as Yup from "yup";
 import BackToHome from "../components/BackToHome";
@@ -44,7 +45,18 @@ export default function Create() {
       price: Number(values.price),
       isRecommend: values.isRecommend,
     };
-    const res = await axios.post("/api/drink/create", body);
+    await axios.post("/api/drink", body);
+
+    // form reset
+    Object.assign(values, createValues());
+
+    // submit finish
+    actions.setSubmitting(false);
+
+    // back to home
+    Router.push({
+      pathname: "/",
+    });
 
     // success toast
     toast({
@@ -55,12 +67,6 @@ export default function Create() {
       isClosable: true,
       position: "top",
     });
-
-    // form reset
-    Object.assign(values, createValues());
-
-    console.log(res);
-    actions.setSubmitting(false);
   };
 
   return (
