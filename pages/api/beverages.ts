@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { isNameDuplicate } from "./../../components/util/beverageService";
 const prisma = new PrismaClient();
 
 export default async (req, res) => {
@@ -11,24 +12,29 @@ export default async (req, res) => {
   const func = funcMap[req.method];
   if (!func) res.status(500).json();
 
-  func(req, res);
+  return func(req, res);
+};
+
+const handleRead = async (req, res) => {
+  // prisma - READ
+  // get all records
+  const beverage = await prisma.beverage.findMany();
+  res.json(beverage);
 };
 
 const handleCreate = async (req, res) => {
   const { name, description, price, isRecommend } = req.body;
 
-  // TODO: `name`の重複チェック
+  // `name` duplicate check
+  const isDup = await isNameDuplicate(name);
+  if (isDup) {
+    res.status(400).end("typed name `" + name + "` is duplicated.");
+    return;
+  }
 
   // prisma - CREATE
   const beverage = await prisma.beverage.create({
     data: { name, description, price, isRecommend },
   });
-  res.json(beverage);
-};
-
-const handleRead = async (req, res) => {
-  // prisma - READ
-  // 条件は絞らずに全件を取得
-  const beverage = await prisma.beverage.findMany();
   res.json(beverage);
 };

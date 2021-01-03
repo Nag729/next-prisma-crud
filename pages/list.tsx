@@ -11,6 +11,7 @@ import {
   Th,
   Thead,
   Tr,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -22,15 +23,19 @@ export default function List() {
   const [tableData, setTableData] = useState([]);
   const [editedId, setEditedId] = useState(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const toast = useToast();
 
   // fetch table data at componentDidMount
   useEffect(() => {
-    axios.get("/api/beverage").then((res) => {
-      setTableData(res.data);
-    });
+    fetchTableData();
   }, []);
 
   // events
+  const fetchTableData = async () => {
+    const res = await axios.get("/api/beverages");
+    setTableData(res.data);
+  };
+
   const handleEdit = (e) => {
     const id = e.currentTarget.getAttribute("data-row-no");
     alert(id);
@@ -42,11 +47,24 @@ export default function List() {
     setIsDeleteDialogOpen(true);
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     setIsDeleteDialogOpen(false);
-    alert("削除するのは" + editedId);
 
-    // TODO: delete
+    // delete beverage
+    await axios.delete(`/api/beverage/${editedId}`);
+
+    // re-fetch
+    await fetchTableData();
+
+    // success toast
+    toast({
+      title: "Delete Successed !",
+      description: "We've deleted beverage you clicked.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+      position: "top",
+    });
   };
 
   return (
@@ -61,19 +79,19 @@ export default function List() {
             borderRadius="full"
             boxSize="150px"
             src="/starbucks-logo.png"
-            alt="StarBucks logo"
+            alt="StarBucks_logo"
           />
         </Box>
 
         {/* title */}
         <Heading
           maxWidth="80vw"
-          size="xl"
+          size="lg"
           my="5"
           textAlign="center"
           color="gray.600"
         >
-          Let's see everyone's customization !
+          みんなのカスタマイズをチェックしましょう.
         </Heading>
 
         {/* data table */}
@@ -111,7 +129,7 @@ export default function List() {
                         onClick={handleEdit}
                         data-row-no={data.id}
                         colorScheme="teal"
-                        aria-label="edit icon"
+                        aria-label="edit_icon"
                         icon={<EditIcon />}
                       />
                     </Td>
@@ -119,8 +137,8 @@ export default function List() {
                       <IconButton
                         onClick={rowDeleteClicked}
                         data-row-no={data.id}
-                        colorScheme="teal"
-                        aria-label="delete icon"
+                        colorScheme="pink"
+                        aria-label="delete_icon"
                         icon={<DeleteIcon />}
                       />
                     </Td>

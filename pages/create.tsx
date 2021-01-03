@@ -16,6 +16,8 @@ import styles from "../styles/Home.module.css";
 import axios from "./../components/util/customAxios";
 
 export default function Create() {
+  const toast = useToast();
+
   // values for Formik.
   const createValues = () => {
     return {
@@ -35,8 +37,6 @@ export default function Create() {
     isRecomment: Yup.boolean(),
   });
 
-  const toast = useToast();
-
   // events
   const createBeverage = async (values, actions) => {
     const body = {
@@ -45,7 +45,7 @@ export default function Create() {
       price: Number(values.price),
       isRecommend: values.isRecommend,
     };
-    await axios.post("/api/beverage", body);
+    await axios.post("/api/beverages", body);
 
     // form reset
     Object.assign(values, createValues());
@@ -81,19 +81,19 @@ export default function Create() {
             borderRadius="full"
             boxSize="150px"
             src="/starbucks-logo.png"
-            alt="StarBucks logo"
+            alt="StarBucks_logo"
           />
         </Box>
 
         {/* title */}
         <Heading
           maxWidth="80vw"
-          size="xl"
+          size="lg"
           my="5"
           textAlign="center"
           color="gray.600"
         >
-          Create New Customize Beverage !
+          新しいメニューを登録しましょう.
         </Heading>
 
         {/* Form */}
@@ -119,9 +119,7 @@ export default function Create() {
 
                 {/* create new beverage button. */}
                 <Stack>
-                  <SubmitButton leftIcon={<AddIcon />}>
-                    Create New Beverage
-                  </SubmitButton>
+                  <SubmitButton leftIcon={<AddIcon />}>登録する</SubmitButton>
                 </Stack>
               </Form>
             )}

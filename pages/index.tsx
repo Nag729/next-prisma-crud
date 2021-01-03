@@ -21,7 +21,7 @@ export default function Home() {
             borderRadius="full"
             boxSize="150px"
             src="/next-logo.jpeg"
-            alt="Nextjs logo"
+            alt="Nextjs_logo"
           />
         </Box>
 
@@ -55,12 +55,12 @@ export default function Home() {
               <Link href="https://www.prisma.io/" color="teal.500" isExternal>
                 Prisma
               </Link>{" "}
-              を利用して、スターバックスの カスタマイズドリンク を CRUD
+              を利用して、スターバックス の カスタマイズドリンク を CRUD
               できるサンプルアプリです。
             </ListItem>
             <ListItem>
               <ListIcon as={CheckIcon} color="teal.500" />
-              アプリを実践的なものにするために{" "}
+              アプリを実践的なサンプルに近づけるために{" "}
               <Link href="https://chakra-ui.com/" color="teal.500" isExternal>
                 chakra UI
               </Link>
@@ -72,7 +72,7 @@ export default function Home() {
             </ListItem>
             <ListItem>
               <ListIcon as={CheckIcon} color="teal.500" />
-              キャッチアップのための情報は、
+              採用ライブラリの詳細 / キャッチアップで役に立った情報などは、
               <Link href="https://qiita.com/Nag729" color="teal.500" isExternal>
                 Qiita - xxx
               </Link>{" "}
