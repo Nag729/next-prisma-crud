@@ -15,13 +15,23 @@ export default async (req, res) => {
   return func(req, res);
 };
 
+/**
+ * READ
+ * @param req
+ * @param res
+ */
 const handleRead = async (req, res) => {
   // prisma - READ
   // get all records
-  const beverage = await prisma.beverage.findMany();
-  res.json(beverage);
+  const beverages = await prisma.beverage.findMany();
+  res.json(beverages);
 };
 
+/**
+ * CREATE
+ * @param req
+ * @param res
+ */
 const handleCreate = async (req, res) => {
   const { name, description, price, isRecommend } = req.body;
 

@@ -8,3 +8,35 @@ export const isNameDuplicate = async (name) => {
   });
   return !!count;
 };
+
+// for getStaticPaths
+export const getAllBeverageIds = async () => {
+  const beverages = await prisma.beverage.findMany({
+    select: { id: true },
+  });
+
+  return beverages.map((beverage) => {
+    return {
+      params: {
+        id: String(beverage.id),
+      },
+    };
+  });
+};
+
+// for getStaticProps
+export const getBeverageData = async (id) => {
+  const beverage = await prisma.beverage.findUnique({
+    where: {
+      id: Number(id),
+    },
+    select: {
+      id: true,
+      name: true,
+      description: true,
+      price: true,
+      isRecommend: true,
+    },
+  });
+  return beverage;
+};

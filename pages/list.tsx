@@ -14,6 +14,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
+import Router from "next/router";
 import React, { useEffect, useState } from "react";
 import BackToHome from "../components/BackToHome";
 import DeleteDialog from "../components/DeleteDialog";
@@ -38,7 +39,9 @@ export default function List() {
 
   const handleEdit = (e) => {
     const id = e.currentTarget.getAttribute("data-row-no");
-    alert(id);
+    Router.push({
+      pathname: `/update/${id}`,
+    });
   };
 
   const rowDeleteClicked = (e) => {
