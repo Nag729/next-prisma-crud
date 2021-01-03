@@ -1,65 +1,76 @@
-import Head from "next/head";
+import { Box, Heading, Image, Link, Text } from "@chakra-ui/react";
 import styles from "../styles/Home.module.css";
+import LinkButton from "./../components/LinkButton";
 
 export default function Home() {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        {/* Nextjs logo */}
+        <Box my="2">
+          <Image
+            borderRadius="full"
+            boxSize="150px"
+            src="/next-logo.jpeg"
+            alt="Nextjs logo"
+          />
+        </Box>
 
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* title */}
+        <Heading
+          maxWidth="50rem"
+          size="3xl"
+          mt={5}
+          mb={5}
+          textAlign="center"
+          color="gray.800"
         >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+          Welcome to{" "}
+          <Link href="https://nextjs.org/" color="blue.500" isExternal>
+            Next.js
+          </Link>
+          {" & "}
+          <Link href="https://www.prisma.io/" color="blue.500" isExternal>
+            Prisma
+          </Link>{" "}
+          CRUD Sample App !
+        </Heading>
+
+        {/* description */}
+        <Box mt="3">
+          <Text fontSize="xl">
+            アプリを実践的なものにするために{" "}
+            <Link href="https://chakra-ui.com/" color="teal.500" isExternal>
+              chakra
+            </Link>
+            {" と "}
+            <Link href="https://jestjs.io/ja/" color="teal.500" isExternal>
+              Jest
+            </Link>{" "}
+            を利用しています。
+          </Text>
+          <Text fontSize="xl">
+            キャッチアップのための情報は、
+            <Link href="https://qiita.com/" color="teal.500" isExternal>
+              Qiita - xxx
+            </Link>{" "}
+            にまとめています。
+          </Text>
+        </Box>
+
+        {/* link button */}
+        <Box mt={5} mb={5}>
+          {/* Create */}
+          <Box mt={5} mb={5}>
+            <LinkButton href="/create">Create New Drink</LinkButton>
+          </Box>
+
+          {/* Link */}
+          <Box mt={5} mb={5}>
+            <LinkButton href="/list">Go To Drink List</LinkButton>
+          </Box>
+        </Box>
+      </main>
     </div>
   );
 }
