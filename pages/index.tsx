@@ -65,8 +65,12 @@ export default function Home() {
                 chakra UI
               </Link>
               {" / "}
-              <Link href="https://jestjs.io/ja/" color="teal.500" isExternal>
-                Jest
+              <Link
+                href="https://formik.org/docs/overview"
+                color="teal.500"
+                isExternal
+              >
+                Formik
               </Link>{" "}
               などを利用しています.
             </ListItem>
@@ -74,7 +78,7 @@ export default function Home() {
               <ListIcon as={CheckIcon} color="teal.500" />
               採用ライブラリの詳細 / キャッチアップで役に立った情報などは、
               <Link href="https://qiita.com/Nag729" color="teal.500" isExternal>
-                Qiita - xxx
+                Qiita - &#x1f6a7; 作成中
               </Link>{" "}
               にまとめています.
             </ListItem>
