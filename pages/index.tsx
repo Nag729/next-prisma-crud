@@ -56,7 +56,7 @@ export default function Home() {
                 Prisma
               </Link>{" "}
               を利用して、スターバックス の カスタマイズドリンク を CRUD
-              できるサンプルアプリです。
+              できるサンプルアプリです.
             </ListItem>
             <ListItem>
               <ListIcon as={CheckIcon} color="teal.500" />
@@ -68,7 +68,7 @@ export default function Home() {
               <Link href="https://jestjs.io/ja/" color="teal.500" isExternal>
                 Jest
               </Link>{" "}
-              などを利用しています。
+              などを利用しています.
             </ListItem>
             <ListItem>
               <ListIcon as={CheckIcon} color="teal.500" />
@@ -76,7 +76,7 @@ export default function Home() {
               <Link href="https://qiita.com/Nag729" color="teal.500" isExternal>
                 Qiita - xxx
               </Link>{" "}
-              にまとめています。
+              にまとめています.
             </ListItem>
           </List>
         </Box>

@@ -100,7 +100,7 @@ export default function List() {
         {/* data table */}
         <Box width="60vw" my="5">
           <Table variant="striped">
-            <TableCaption placement="top">
+            <TableCaption placement="top" mb="3">
               みんなのカスタマイズ一覧
             </TableCaption>
             <Thead>
