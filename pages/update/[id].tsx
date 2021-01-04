@@ -15,7 +15,7 @@ export async function getStaticPaths() {
   const paths = await getAllBeverageIds();
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
