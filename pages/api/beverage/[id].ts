@@ -22,7 +22,7 @@ export default async (req, res) => {
  */
 const handleUpdate = async (req, res) => {
   const url = req.url;
-  const updateID = Number(url.split(/\//).pop());
+  const updateID = parseInt(url.split(/\//, 10).pop());
   const { name, description, price, isRecommend } = req.body;
 
   // `name` duplicate check
@@ -47,7 +47,7 @@ const handleUpdate = async (req, res) => {
  */
 const handleDelete = async (req, res) => {
   const url = req.url;
-  const deleteID = Number(url.split(/\//).pop());
+  const deleteID = parseInt(url.split(/\//, 10).pop());
 
   // prisma - DELETE
   const beverage = await prisma.beverage.delete({
