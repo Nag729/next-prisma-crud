@@ -25,6 +25,7 @@ export async function getStaticProps({ params }) {
     props: {
       beverageData,
     },
+    revalidate: 1,
   };
 }
 
@@ -33,6 +34,7 @@ export default function Update({ beverageData }) {
 
   // values for Formik.
   const createValues = () => {
+    if (!beverageData) return {};
     return {
       name: beverageData.name,
       description: beverageData.description || "",
