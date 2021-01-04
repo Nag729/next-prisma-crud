@@ -7,7 +7,11 @@ export default function TheFooter() {
     <footer className={styles.footer}>
       <Text>
         Created by{" "}
-        <Link color="teal.500" href="https://github.com/Nag729" isExternal>
+        <Link
+          color="teal.500"
+          href="https://github.com/Nag729/next-prisma-crud"
+          isExternal
+        >
           Nag729 &#128526;
         </Link>
       </Text>

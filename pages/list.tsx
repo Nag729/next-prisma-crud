@@ -104,19 +104,19 @@ export default function List() {
         </Heading>
 
         {/* data table */}
-        <Box width="60vw" my="5">
-          <Table variant="striped">
+        <Box width={["100vw", "100vw", "80vw", "60vw"]} my="5">
+          <Table variant="striped" size="sm">
             <TableCaption placement="top" mb="3">
               みんなのカスタマイズ一覧
             </TableCaption>
             <Thead>
               <Tr>
-                <Th>NAME</Th>
-                <Th>DECRIPTION</Th>
-                <Th isNumeric>PRICE</Th>
-                <Th>RECOMMEND</Th>
-                <Th>EDIT</Th>
-                <Th>DELETE</Th>
+                <Th>名前</Th>
+                <Th>説明</Th>
+                <Th isNumeric>価格</Th>
+                <Th>★</Th>
+                <Th>編集</Th>
+                <Th>削除</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -130,7 +130,7 @@ export default function List() {
                     </Td>
                     <Td>
                       {data.isRecommend && (
-                        <StarIcon w={5} h={5} color="teal.500" />
+                        <StarIcon w={4} h={4} color="teal.500" />
                       )}
                     </Td>
                     <Td>
@@ -139,6 +139,7 @@ export default function List() {
                         data-row-no={data.id}
                         colorScheme="teal"
                         aria-label="edit_icon"
+                        size="sm"
                         icon={<EditIcon />}
                       />
                     </Td>
@@ -148,6 +149,7 @@ export default function List() {
                         data-row-no={data.id}
                         colorScheme="pink"
                         aria-label="delete_icon"
+                        size="sm"
                         icon={<DeleteIcon />}
                       />
                     </Td>

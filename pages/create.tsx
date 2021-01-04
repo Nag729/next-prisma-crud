@@ -80,7 +80,14 @@ export default function Create() {
         </Heading>
 
         {/* Form */}
-        <Box width="30rem">
+        <Box
+          width={[
+            "80vw", // 0-30em
+            "70vw", // 30em-48em
+            "70vw", // 48em-62em
+            "40vw", // 62em+
+          ]}
+        >
           <BeverageForm
             initialValues={initialValues}
             onSubmit={createBeverage}
