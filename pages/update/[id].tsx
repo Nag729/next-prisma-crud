@@ -35,9 +35,9 @@ export default function Update({ beverageData }) {
   const createValues = () => {
     return {
       name: beverageData.name,
-      description: beverageData.description,
-      price: String(beverageData.price),
-      isRecommend: beverageData.isRecommend,
+      description: beverageData.description || "",
+      price: beverageData.price ? String(beverageData.price) : "",
+      isRecommend: beverageData.isRecommend || false,
     };
   };
   const initialValues = createValues();

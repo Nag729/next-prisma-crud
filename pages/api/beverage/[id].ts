@@ -26,7 +26,7 @@ const handleUpdate = async (req, res) => {
   const { name, description, price, isRecommend } = req.body;
 
   // `name` duplicate check
-  const isDup = await isNameDuplicate(name);
+  const isDup = await isNameDuplicate(name, updateID);
   if (isDup) {
     res.status(400).end("typed name `" + name + "` is duplicated.");
     return;

@@ -2,10 +2,23 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 // `name` duplicate check
-export const isNameDuplicate = async (name) => {
-  const count = await prisma.beverage.count({
-    where: { name: name },
-  });
+export const isNameDuplicate = async (name, id = null) => {
+  const createWhere = {
+    where: {
+      name: name,
+    },
+  };
+  const updateWhere = {
+    where: {
+      name: name,
+      id: {
+        not: id,
+      },
+    },
+  };
+
+  const option = id ? updateWhere : createWhere;
+  const count = await prisma.beverage.count(option);
   return !!count;
 };
 
