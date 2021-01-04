@@ -1,9 +1,11 @@
 import { DeleteIcon, EditIcon, StarIcon } from "@chakra-ui/icons";
 import {
   Box,
+  Center,
   Heading,
   IconButton,
   Image,
+  Spinner,
   Table,
   TableCaption,
   Tbody,
@@ -22,6 +24,7 @@ import styles from "../styles/Home.module.css";
 
 export default function List() {
   const [tableData, setTableData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [editedId, setEditedId] = useState(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const toast = useToast();
@@ -33,7 +36,10 @@ export default function List() {
 
   // events
   const fetchTableData = async () => {
+    setIsLoading(true);
     const res = await axios.get("/api/beverages");
+
+    setIsLoading(false);
     setTableData(res.data);
   };
 
@@ -150,6 +156,19 @@ export default function List() {
               })}
             </Tbody>
           </Table>
+
+          {isLoading && (
+            <Center>
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="teal.500"
+                size="xl"
+                my="3"
+              />
+            </Center>
+          )}
         </Box>
 
         {/* delete dialog */}
