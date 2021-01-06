@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { isNameDuplicate } from "../../util/service/beverageService";
+import { beverageFormSchema } from "../../util/validators/BeverageFormSchema";
 const prisma = new PrismaClient();
 
 export default async (req, res) => {
@@ -10,7 +11,10 @@ export default async (req, res) => {
   };
 
   const func = funcMap[req.method];
-  if (!func) res.status(500).json();
+  if (!func) {
+    res.setHeader("Allow", ["GET", "POST"]);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
 
   return func(req, res);
 };
@@ -34,6 +38,18 @@ const handleRead = async (req, res) => {
  */
 const handleCreate = async (req, res) => {
   const { name, description, price, isRecommend } = req.body;
+
+  // validation check
+  const isValid = await beverageFormSchema.isValid({
+    name,
+    description,
+    price,
+    isRecommend,
+  });
+  if (!isValid) {
+    res.status(400).end("sent param is invalid.");
+    return;
+  }
 
   // `name` duplicate check
   const isDup = await isNameDuplicate(name);

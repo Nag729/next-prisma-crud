@@ -9,26 +9,18 @@ import {
   TextareaControl,
 } from "formik-chakra-ui";
 import React from "react";
-import * as Yup from "yup";
+import { beverageFormSchema } from "../util/validators/BeverageFormSchema";
 
 export default function BeverageForm({
   initialValues,
   onSubmit,
   type = "create",
 }) {
-  // validations
-  const validationSchema = Yup.object({
-    name: Yup.string().required(),
-    description: Yup.string(),
-    price: Yup.number().min(0).max(3000),
-    isRecomment: Yup.boolean(),
-  });
-
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={onSubmit}
-      validationSchema={validationSchema}
+      validationSchema={beverageFormSchema}
     >
       {(props) => (
         <Form>
