@@ -1,6 +1,7 @@
-import { DeleteIcon, EditIcon, StarIcon } from "@chakra-ui/icons";
+import { AddIcon, DeleteIcon, EditIcon, StarIcon } from "@chakra-ui/icons";
 import {
   Box,
+  Button,
   Center,
   Heading,
   IconButton,
@@ -41,6 +42,12 @@ export default function List() {
 
     setIsLoading(false);
     setTableData(res.data);
+  };
+
+  const routeCreate = (e) => {
+    Router.push({
+      pathname: `/create`,
+    });
   };
 
   const handleEdit = (e) => {
@@ -102,6 +109,21 @@ export default function List() {
         >
           みんなのカスタマイズをチェックしましょう.
         </Heading>
+
+        {/* add button */}
+        {/* <Flex>
+          <Spacer /> */}
+        <Button
+          onClick={routeCreate}
+          leftIcon={<AddIcon />}
+          colorScheme="teal"
+          variant="solid"
+          alignSelf="flex-end"
+          mt="3"
+        >
+          Add Beverage
+        </Button>
+        {/* </Flex> */}
 
         {/* data table */}
         <Box width={["100vw", "100vw", "80vw", "60vw"]} my="5">

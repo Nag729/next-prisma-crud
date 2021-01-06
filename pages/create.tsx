@@ -1,7 +1,7 @@
 import { Box, Heading, Image, useToast } from "@chakra-ui/react";
 import Router from "next/router";
 import React from "react";
-import BackToHome from "../components/BackToHome";
+import BackToList from "../components/BackToList";
 import BeverageForm from "../components/BeverageForm";
 import styles from "../styles/Home.module.css";
 import axios from "../util/customAxios";
@@ -56,7 +56,7 @@ export default function Create() {
     <div className={styles.container}>
       <main className={styles.main}>
         {/* link to home. */}
-        <BackToHome></BackToHome>
+        <BackToList></BackToList>
 
         {/* Starbucks logo */}
         <Box mt="5" mb="2">
