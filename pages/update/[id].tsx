@@ -3,18 +3,16 @@ import Router from "next/router";
 import React from "react";
 import BackToList from "../../components/BackToList";
 import BeverageForm from "../../components/BeverageForm";
-import {
-  getAllBeverageIds,
-  getBeverageData,
-} from "../../components/util/beverageService";
-import axios from "../../components/util/customAxios";
 import styles from "../../styles/Home.module.css";
+import { getAllBeverageIds, getBeverageData } from "../../util/beverageService";
+import axios from "../../util/customAxios";
 const isEqual = require("lodash.isequal");
 
 export async function getStaticPaths() {
   const paths = await getAllBeverageIds();
   return {
     paths,
+    // FIXME: 存在しないURLに飛んだときの挙動
     fallback: true,
   };
 }
@@ -25,6 +23,7 @@ export async function getStaticProps({ params }) {
     props: {
       beverageData,
     },
+    // FIXME: ISRをSSRに変更する
     revalidate: 1,
   };
 }

@@ -4,7 +4,7 @@ import React from "react";
 import BackToHome from "../components/BackToHome";
 import BeverageForm from "../components/BeverageForm";
 import styles from "../styles/Home.module.css";
-import axios from "./../components/util/customAxios";
+import axios from "../util/customAxios";
 
 export default function Create() {
   const toast = useToast();
