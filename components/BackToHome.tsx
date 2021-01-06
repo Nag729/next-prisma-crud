@@ -5,7 +5,9 @@ import React from "react";
 export default function BackToHome() {
   return (
     <NextLink href="/">
-      <Link color="blue.500">{"<"} Back to home</Link>
+      <Link className="home-link" color="blue.500">
+        {"<"} Back to home
+      </Link>
     </NextLink>
   );
 }

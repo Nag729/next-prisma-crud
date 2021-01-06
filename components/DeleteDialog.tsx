@@ -11,6 +11,7 @@ import React from "react";
 
 export default function DeleteDialog(props) {
   const cancelRef = React.useRef();
+
   return (
     <AlertDialog
       isOpen={props.isOpen}

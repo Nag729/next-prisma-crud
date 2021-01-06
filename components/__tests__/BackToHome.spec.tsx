@@ -1,9 +1,21 @@
+import { shallow } from "enzyme";
+import NextLink from "next/link";
 import React from "react";
-import renderer from "react-test-renderer";
 import BackToHome from "../BackToHome";
 
-test("BackToHome", () => {
-  const component = renderer.create(<BackToHome />);
+describe("BackToHome", () => {
+  it("renders", () => {
+    const wrapper = shallow(<BackToHome />);
+    expect(wrapper).toBeTruthy();
+  });
 
-  // TODO: テスト書いていく
+  it("equal link text", () => {
+    const wrapper = shallow(<BackToHome />);
+    expect(wrapper.find(".home-link").text()).toEqual("< Back to home");
+  });
+
+  it("equal link href", () => {
+    const wrapper = shallow(<BackToHome />);
+    expect(wrapper.find(NextLink).props().href).toEqual("/");
+  });
 });
