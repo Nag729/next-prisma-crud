@@ -5,30 +5,20 @@ import BackToList from "../../components/BackToList";
 import BeverageForm from "../../components/BeverageForm";
 import styles from "../../styles/Home.module.css";
 import axios from "../../util/customAxios";
-import {
-  getAllBeverageIds,
-  getBeverageData,
-} from "../../util/service/beverageService";
+import { getBeverageData } from "../../util/service/beverageService";
 const isEqual = require("lodash.isequal");
 
-export async function getStaticPaths() {
-  const paths = await getAllBeverageIds();
-  return {
-    paths,
-    // FIXME: 存在しないURLに飛んだときの挙動
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params }) {
+// SSR
+export async function getServerSideProps({ params }) {
   const beverageData = await getBeverageData(params.id);
-  return {
-    props: {
-      beverageData,
-    },
-    // FIXME: ISRをSSRに変更する
-    revalidate: 1,
-  };
+  console.log(beverageData);
+
+  if (!beverageData) {
+    return {
+      notFound: true,
+    };
+  }
+  return { props: { beverageData } };
 }
 
 export default function Update({ beverageData }) {
