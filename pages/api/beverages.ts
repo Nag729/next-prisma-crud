@@ -1,9 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+import { Beverage, PrismaClient } from "@prisma/client";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { isNameDuplicate } from "../../util/service/beverageService";
 import { beverageFormSchema } from "../../util/validators/BeverageFormSchema";
 const prisma = new PrismaClient();
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   // call functions by method
   const funcMap = {
     GET: handleRead,
@@ -24,7 +25,10 @@ export default async (req, res) => {
  * @param req
  * @param res
  */
-const handleRead = async (req, res) => {
+const handleRead = async (
+  req: NextApiRequest,
+  res: NextApiResponse<Beverage[]>
+) => {
   // prisma - READ
   // get all records
   const beverages = await prisma.beverage.findMany();
@@ -36,7 +40,10 @@ const handleRead = async (req, res) => {
  * @param req
  * @param res
  */
-const handleCreate = async (req, res) => {
+const handleCreate = async (
+  req: NextApiRequest,
+  res: NextApiResponse<Beverage>
+) => {
   const { name, description, price, isRecommend } = req.body;
 
   // validation check

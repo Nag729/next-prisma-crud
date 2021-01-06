@@ -22,11 +22,12 @@ import React, { useEffect, useState } from "react";
 import BackToHome from "../components/BackToHome";
 import DeleteDialog from "../components/DeleteDialog";
 import styles from "../styles/Home.module.css";
+import { BeverageGridData } from "../types/beverage";
 
 export default function List() {
-  const [tableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState<BeverageGridData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [editedId, setEditedId] = useState(null);
+  const [editedId, setEditedId] = useState<string>(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const toast = useToast();
 
@@ -44,21 +45,21 @@ export default function List() {
     setTableData(res.data);
   };
 
-  const routeCreate = (e) => {
+  const routeCreate = (e): void => {
     Router.push({
       pathname: `/create`,
     });
   };
 
-  const handleEdit = (e) => {
+  const handleEdit = (e): void => {
     const id = e.currentTarget.getAttribute("data-row-no");
     Router.push({
       pathname: `/update/${id}`,
     });
   };
 
-  const rowDeleteClicked = (e) => {
-    const id = e.currentTarget.getAttribute("data-row-no");
+  const rowDeleteClicked = (e): void => {
+    const id: string = e.currentTarget.getAttribute("data-row-no");
     setEditedId(id);
     setIsDeleteDialogOpen(true);
   };

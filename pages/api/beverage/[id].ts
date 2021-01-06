@@ -1,9 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+import { Beverage, PrismaClient } from "@prisma/client";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { isNameDuplicate } from "../../../util/service/beverageService";
 import { beverageFormSchema } from "../../../util/validators/BeverageFormSchema";
 const prisma = new PrismaClient();
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   // call functions by method
   const funcMap = {
     PUT: handleUpdate,
@@ -24,7 +25,10 @@ export default async (req, res) => {
  * @param req
  * @param res
  */
-const handleUpdate = async (req, res) => {
+const handleUpdate = async (
+  req: NextApiRequest,
+  res: NextApiResponse<Beverage>
+) => {
   const url = req.url;
   const updateID = parseInt(url.split(/\//, 10).pop());
   const { name, description, price, isRecommend } = req.body;
@@ -61,7 +65,10 @@ const handleUpdate = async (req, res) => {
  * @param req
  * @param res
  */
-const handleDelete = async (req, res) => {
+const handleDelete = async (
+  req: NextApiRequest,
+  res: NextApiResponse<Beverage>
+) => {
   const url = req.url;
   const deleteID = parseInt(url.split(/\//, 10).pop());
 

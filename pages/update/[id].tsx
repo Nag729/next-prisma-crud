@@ -1,9 +1,11 @@
 import { Box, Heading, Image, useToast } from "@chakra-ui/react";
+import { Beverage } from "@prisma/client";
 import Router from "next/router";
 import React from "react";
 import BackToList from "../../components/BackToList";
 import BeverageForm from "../../components/BeverageForm";
 import styles from "../../styles/Home.module.css";
+import { BeverageFormData } from "../../types/beverage";
 import axios from "../../util/customAxios";
 import { getBeverageData } from "../../util/service/beverageService";
 const isEqual = require("lodash.isequal");
@@ -11,8 +13,6 @@ const isEqual = require("lodash.isequal");
 // SSR
 export async function getServerSideProps({ params }) {
   const beverageData = await getBeverageData(params.id);
-  console.log(beverageData);
-
   if (!beverageData) {
     return {
       notFound: true,
@@ -21,12 +21,20 @@ export async function getServerSideProps({ params }) {
   return { props: { beverageData } };
 }
 
-export default function Update({ beverageData }) {
+export default function Update({ beverageData }: { beverageData: Beverage }) {
   const toast = useToast();
 
   // values for Formik.
-  const createValues = () => {
-    if (!beverageData) return {};
+  const createValues = (): BeverageFormData => {
+    if (!beverageData) {
+      return {
+        name: "",
+        description: "",
+        price: "",
+        isRecommend: false,
+      };
+    }
+
     return {
       name: beverageData.name,
       description: beverageData.description || "",
@@ -34,10 +42,11 @@ export default function Update({ beverageData }) {
       isRecommend: beverageData.isRecommend || false,
     };
   };
+
   const initialValues = createValues();
 
   // events
-  const updateBeverage = async (values, actions) => {
+  const updateBeverage = async (values: BeverageFormData, actions) => {
     // check input change
     const isSame = isEqual(values, createValues());
     if (isSame) {

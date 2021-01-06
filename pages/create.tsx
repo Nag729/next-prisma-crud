@@ -4,13 +4,14 @@ import React from "react";
 import BackToList from "../components/BackToList";
 import BeverageForm from "../components/BeverageForm";
 import styles from "../styles/Home.module.css";
+import { BeverageFormData } from "../types/beverage";
 import axios from "../util/customAxios";
 
 export default function Create() {
   const toast = useToast();
 
   // values for Formik.
-  const createValues = () => {
+  const createValues = (): BeverageFormData => {
     return {
       name: "",
       description: "",
@@ -18,10 +19,11 @@ export default function Create() {
       isRecommend: false,
     };
   };
+
   const initialValues = createValues();
 
   // events
-  const createBeverage = async (values, actions) => {
+  const createBeverage = async (values: BeverageFormData, actions) => {
     const body = {
       name: values.name,
       description: values.description,

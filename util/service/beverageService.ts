@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 // `name` duplicate check
-export const isNameDuplicate = async (name, id = null) => {
+export const isNameDuplicate = async (name: string, id: number = null) => {
   const createWhere = {
     where: {
       name: name,
@@ -38,7 +38,7 @@ export const getAllBeverageIds = async () => {
 };
 
 // for getStaticProps
-export const getBeverageData = async (id) => {
+export const getBeverageData = async (id: string | number) => {
   const beverage = await prisma.beverage.findUnique({
     where: {
       id: Number(id),
