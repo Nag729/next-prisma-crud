@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { isNameDuplicate } from "../../util/beverageService";
+import { isNameDuplicate } from "../../util/service/beverageService";
 const prisma = new PrismaClient();
 
 export default async (req, res) => {

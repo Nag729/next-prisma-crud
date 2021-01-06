@@ -4,8 +4,11 @@ import React from "react";
 import BackToList from "../../components/BackToList";
 import BeverageForm from "../../components/BeverageForm";
 import styles from "../../styles/Home.module.css";
-import { getAllBeverageIds, getBeverageData } from "../../util/beverageService";
 import axios from "../../util/customAxios";
+import {
+  getAllBeverageIds,
+  getBeverageData,
+} from "../../util/service/beverageService";
 const isEqual = require("lodash.isequal");
 
 export async function getStaticPaths() {
