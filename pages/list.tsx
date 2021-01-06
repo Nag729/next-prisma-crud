@@ -121,6 +121,7 @@ export default function List() {
           variant="solid"
           alignSelf="flex-end"
           mt="3"
+          mr="3"
         >
           Add Beverage
         </Button>
