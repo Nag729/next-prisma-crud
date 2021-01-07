@@ -40,7 +40,7 @@ export default function Create() {
 
     // back to home
     Router.push({
-      pathname: "/",
+      pathname: "/list",
     });
 
     // success toast
