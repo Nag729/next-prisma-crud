@@ -31,7 +31,11 @@ const handleRead = async (
 ) => {
   // prisma - READ
   // get all records
-  const beverages = await prisma.beverage.findMany();
+  const beverages = await prisma.beverage.findMany({
+    orderBy: {
+      id: "asc",
+    },
+  });
   res.json(beverages);
 };
 
