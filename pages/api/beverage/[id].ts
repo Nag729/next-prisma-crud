@@ -1,7 +1,7 @@
 import { Beverage, PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { isNameDuplicate } from "../../../util/service/beverageService";
-import { beverageFormSchema } from "../../../util/validators/BeverageFormSchema";
+import { beverageFormSchema } from "../../../validators/BeverageFormSchema";
 const prisma = new PrismaClient();
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -53,6 +53,7 @@ const handleUpdate = async (
   }
 
   // prisma - UPDATE
+  // TODO: check existing & not changed before update.
   const beverage = await prisma.beverage.update({
     where: { id: updateID },
     data: { name, description, price, isRecommend },
@@ -73,6 +74,7 @@ const handleDelete = async (
   const deleteID = parseInt(url.split(/\//, 10).pop());
 
   // prisma - DELETE
+  // TODO: check existing before delete.
   const beverage = await prisma.beverage.delete({
     where: {
       id: deleteID,

@@ -9,7 +9,7 @@ import {
   TextareaControl,
 } from "formik-chakra-ui";
 import React from "react";
-import { beverageFormSchema } from "../util/validators/BeverageFormSchema";
+import { beverageFormSchema } from "../validators/BeverageFormSchema";
 
 export default function BeverageForm({
   initialValues,

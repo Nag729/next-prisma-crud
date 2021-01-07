@@ -1,7 +1,7 @@
 import { Beverage, PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { isNameDuplicate } from "../../util/service/beverageService";
-import { beverageFormSchema } from "../../util/validators/BeverageFormSchema";
+import { beverageFormSchema } from "../../validators/BeverageFormSchema";
 const prisma = new PrismaClient();
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
