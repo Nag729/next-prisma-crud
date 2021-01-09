@@ -60,23 +60,19 @@ export default function Home() {
             </ListItem>
             <ListItem>
               <ListIcon as={CheckIcon} color="teal.500" />
-              アプリを実践的なサンプルに近づけるために{" "}
-              <Link href="https://chakra-ui.com/" color="teal.500" isExternal>
-                chakra UI
-              </Link>
-              {" / "}
+              ソースコードは{" "}
               <Link
-                href="https://formik.org/docs/overview"
+                href="https://github.com/Nag729/next-prisma-crud"
                 color="teal.500"
                 isExternal
               >
-                Formik
+                GitHub - Nag729/next-prisma-crud
               </Link>{" "}
-              などを利用しています.
+              に置いてあります.
             </ListItem>
             <ListItem>
               <ListIcon as={CheckIcon} color="teal.500" />
-              採用ライブラリの詳細 / キャッチアップで役に立った情報などは、
+              アプリケーション構成 / コードの説明などは、
               <Link href="https://qiita.com/Nag729" color="teal.500" isExternal>
                 Qiita - &#x1f6a7; 作成中
               </Link>{" "}
