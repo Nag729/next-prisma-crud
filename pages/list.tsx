@@ -71,6 +71,7 @@ export default function List() {
     await axios.delete(`/api/beverage/${editedId}`);
 
     // re-fetch
+    setTableData([]);
     await fetchTableData();
 
     // success toast
