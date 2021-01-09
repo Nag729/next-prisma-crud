@@ -17,7 +17,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 
-  return func(req, res);
+  return func(req, res)
+    .catch((e) => {
+      res.status(400).end("prisma client throws an exception.");
+    })
+    .finally(async () => {
+      await prisma.$disconnect();
+    });
 };
 
 /**
@@ -30,19 +36,12 @@ const handleRead = async (
   res: NextApiResponse<Beverage[]>
 ) => {
   // prisma - READ
-  try {
-    const beverages = await prisma.beverage.findMany({
-      orderBy: {
-        id: "asc",
-      },
-    });
-    res.json(beverages);
-  } catch (e) {
-    res
-      .status(400)
-      .end("An error occurred on the server when Prisma exec READ.");
-    return;
-  }
+  const beverages = await prisma.beverage.findMany({
+    orderBy: {
+      id: "asc",
+    },
+  });
+  res.json(beverages);
 };
 
 /**
@@ -76,15 +75,8 @@ const handleCreate = async (
   }
 
   // prisma - CREATE
-  try {
-    const beverage = await prisma.beverage.create({
-      data: { name, description, price, isRecommend },
-    });
-    res.json(beverage);
-  } catch (e) {
-    res
-      .status(400)
-      .end("An error occurred on the server when Prisma exec CREATE.");
-    return;
-  }
+  const beverage = await prisma.beverage.create({
+    data: { name, description, price, isRecommend },
+  });
+  res.json(beverage);
 };

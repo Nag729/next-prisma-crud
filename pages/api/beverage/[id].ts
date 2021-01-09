@@ -17,7 +17,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 
-  return func(req, res);
+  return func(req, res)
+    .catch((e) => {
+      res.status(400).end("prisma client throws an exception.");
+    })
+    .finally(async () => {
+      await prisma.$disconnect();
+    });
 };
 
 /**
@@ -53,18 +59,11 @@ const handleUpdate = async (
   }
 
   // prisma - UPDATE
-  try {
-    const beverage = await prisma.beverage.update({
-      where: { id: updateID },
-      data: { name, description, price, isRecommend },
-    });
-    res.json(beverage);
-  } catch (e) {
-    res
-      .status(400)
-      .end("An error occurred on the server when Prisma exec UPDATE.");
-    return;
-  }
+  const beverage = await prisma.beverage.update({
+    where: { id: updateID },
+    data: { name, description, price, isRecommend },
+  });
+  res.json(beverage);
 };
 
 /**
@@ -80,17 +79,10 @@ const handleDelete = async (
   const deleteID = parseInt(url.split(/\//, 10).pop());
 
   // prisma - DELETE
-  try {
-    const beverage = await prisma.beverage.delete({
-      where: {
-        id: deleteID,
-      },
-    });
-    res.json(beverage);
-  } catch (e) {
-    res
-      .status(400)
-      .end("An error occurred on the server when Prisma exec DELETE.");
-    return;
-  }
+  const beverage = await prisma.beverage.delete({
+    where: {
+      id: deleteID,
+    },
+  });
+  res.json(beverage);
 };
