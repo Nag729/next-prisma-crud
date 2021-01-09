@@ -53,12 +53,18 @@ const handleUpdate = async (
   }
 
   // prisma - UPDATE
-  // TODO: check existing & not changed before update.
-  const beverage = await prisma.beverage.update({
-    where: { id: updateID },
-    data: { name, description, price, isRecommend },
-  });
-  res.json(beverage);
+  try {
+    const beverage = await prisma.beverage.update({
+      where: { id: updateID },
+      data: { name, description, price, isRecommend },
+    });
+    res.json(beverage);
+  } catch (e) {
+    res
+      .status(400)
+      .end("An error occurred on the server when Prisma exec UPDATE.");
+    return;
+  }
 };
 
 /**
@@ -74,11 +80,17 @@ const handleDelete = async (
   const deleteID = parseInt(url.split(/\//, 10).pop());
 
   // prisma - DELETE
-  // TODO: check existing before delete.
-  const beverage = await prisma.beverage.delete({
-    where: {
-      id: deleteID,
-    },
-  });
-  res.json(beverage);
+  try {
+    const beverage = await prisma.beverage.delete({
+      where: {
+        id: deleteID,
+      },
+    });
+    res.json(beverage);
+  } catch (e) {
+    res
+      .status(400)
+      .end("An error occurred on the server when Prisma exec DELETE.");
+    return;
+  }
 };

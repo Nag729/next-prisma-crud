@@ -30,13 +30,19 @@ const handleRead = async (
   res: NextApiResponse<Beverage[]>
 ) => {
   // prisma - READ
-  // get all records
-  const beverages = await prisma.beverage.findMany({
-    orderBy: {
-      id: "asc",
-    },
-  });
-  res.json(beverages);
+  try {
+    const beverages = await prisma.beverage.findMany({
+      orderBy: {
+        id: "asc",
+      },
+    });
+    res.json(beverages);
+  } catch (e) {
+    res
+      .status(400)
+      .end("An error occurred on the server when Prisma exec READ.");
+    return;
+  }
 };
 
 /**
@@ -70,8 +76,15 @@ const handleCreate = async (
   }
 
   // prisma - CREATE
-  const beverage = await prisma.beverage.create({
-    data: { name, description, price, isRecommend },
-  });
-  res.json(beverage);
+  try {
+    const beverage = await prisma.beverage.create({
+      data: { name, description, price, isRecommend },
+    });
+    res.json(beverage);
+  } catch (e) {
+    res
+      .status(400)
+      .end("An error occurred on the server when Prisma exec CREATE.");
+    return;
+  }
 };
