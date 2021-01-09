@@ -5,7 +5,9 @@ import React from "react";
 export default function BackToList() {
   return (
     <NextLink href="/list">
-      <Link color="blue.500">{"<"} Back to list</Link>
+      <Link className="list-link" color="blue.500">
+        {"<"} Back to list
+      </Link>
     </NextLink>
   );
 }
