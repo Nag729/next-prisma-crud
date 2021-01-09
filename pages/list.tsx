@@ -191,7 +191,7 @@ export default function List() {
                 emptyColor="gray.200"
                 color="teal.500"
                 size="xl"
-                my="3"
+                my="5"
               />
             </Center>
           )}
