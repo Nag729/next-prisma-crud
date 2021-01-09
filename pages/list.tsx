@@ -16,13 +16,13 @@ import {
   Tr,
   useToast,
 } from "@chakra-ui/react";
-import axios from "axios";
 import Router from "next/router";
 import React, { useEffect, useState } from "react";
 import BackToHome from "../components/BackToHome";
 import DeleteDialog from "../components/DeleteDialog";
 import styles from "../styles/Home.module.css";
 import { BeverageGridData } from "../types/beverage";
+import axios from "../util/customAxios";
 
 export default function List() {
   const [tableData, setTableData] = useState<BeverageGridData[]>([]);
