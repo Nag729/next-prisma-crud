@@ -1,6 +1,17 @@
+# About Repository
+
+* [Next.js](https://nextjs.org/) × [Prisma](https://www.prisma.io/) で作成した CRUD アプリケーションのリポジトリです.
+* アプリケーションの説明は、[Qiita](https://qiita.com/Nag729) にまとめています.
+
+# TODO
+
+* :warning: jest のテストを整備する.
+
 <details><summary>Next.js README</summary><div>
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js README
+
+* This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
