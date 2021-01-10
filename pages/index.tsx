@@ -78,8 +78,7 @@ export default function Home() {
                 color="teal.500"
                 isExternal
               >
-                Qiita - DB 操作まで JS で完結！Next.js × Prisma を CRUD
-                アプリケーションでざっくり理解する。
+                Qiita の記事
               </Link>{" "}
               にまとめています.
             </ListItem>
