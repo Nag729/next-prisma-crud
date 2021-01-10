@@ -73,8 +73,13 @@ export default function Home() {
             <ListItem>
               <ListIcon as={CheckIcon} color="teal.500" />
               アプリケーション構成 / コードの説明などは、
-              <Link href="https://qiita.com/Nag729" color="teal.500" isExternal>
-                Qiita - &#x1f6a7; 作成中
+              <Link
+                href="https://qiita.com/Nag729/items/16995edd91e8c11323db"
+                color="teal.500"
+                isExternal
+              >
+                Qiita - DB 操作まで JS で完結！Next.js × Prisma を CRUD
+                アプリケーションでざっくり理解する。
               </Link>{" "}
               にまとめています.
             </ListItem>
