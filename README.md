@@ -1,7 +1,7 @@
 # About Repository
 
 * [Next.js](https://nextjs.org/) × [Prisma](https://www.prisma.io/) で作成した CRUD アプリケーションのリポジトリです.
-* アプリケーションの説明は、[Qiita](https://qiita.com/Nag729) にまとめています.
+* アプリケーションの説明は、[Qiita - DB 操作まで JS で完結！Next.js × Prisma を CRUD アプリケーションでざっくり理解する。](https://qiita.com/Nag729/items/16995edd91e8c11323db) にまとめています.
 
 # TODO
 
