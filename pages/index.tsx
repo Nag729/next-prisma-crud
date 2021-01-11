@@ -8,6 +8,7 @@ import {
   ListIcon,
   ListItem,
 } from "@chakra-ui/react";
+import React from "react";
 import styles from "../styles/Home.module.css";
 import LinkButton from "./../components/LinkButton";
 
